@@ -15,7 +15,7 @@ dpkg-reconfigure --frontend noninteractive tzdata
 
 # Setup database
 echo "DROP DATABASE IF EXISTS test" | mysql -uroot -proot
-echo "CREATE USER 'wp'@'localhost' IDENTIFIED BY 'root'" | mysql -u root -proot
+echo "CREATE USER 'wp'@'localhost' IDENTIFIED BY 'wp'" | mysql -u root -proot
 echo "CREATE DATABASE wp" | mysql -uroot -proot
 echo "GRANT ALL ON wp.* TO 'wp'@'localhost'" | mysql -uroot -prootv
 echo "FLUSH PRIVILEGES" | mysql -uroot -proot
@@ -60,14 +60,4 @@ mv wordpress wp
 
 
 
-# WPCLI
-cd /usr/local/bin/
-curl -O http://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-mv wp-cli.phar wp
-chmod +x wp
-wp --info
-
-#WPCLI companion
-cd /home/vagrant
-curl -O http://github.com/wp-cli/wp-cli/raw/master/utils/wp-completion.bash
 
