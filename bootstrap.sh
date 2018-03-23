@@ -5,7 +5,7 @@ debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password_again pa
 
 # Install packages
 apt-get update
-apt-get -y install mysql-server-5.5 php5-mysql libsqlite3-dev apache2 php5 php5-dev php5-gd build-essential php-pear
+apt-get -y install mariadb-server php-mysql libsqlite3-dev apache2 php php-dev php-gd build-essential php-pear
 
 
 # Set timezone
