@@ -22,7 +22,7 @@ echo "FLUSH PRIVILEGES" | mysql -uroot -proot
 
 # Apache changes
 # add line to end of conf file
-echo "<Directory /var/www/wp>" >> /etc/apache2/apache2.conf
+echo "<Directory /var/www/html>" >> /etc/apache2/apache2.conf
 echo " Options Indexes FollowSymLinks" >> /etc/apache2/apache2.conf
 echo " AllowOverride All" >> /etc/apache2/apache2.conf
 echo " Require all granted" >> /etc/apache2/apache2.conf
@@ -45,18 +45,11 @@ sed -i '/html_errors = Off/c html_errors = On' /etc/php5/apache2/php.ini
 service apache2 restart
 
 
-
-
-mkdir /var/www/wp/sites/default/files
-chmod 777 /var/www/wp/sites/default/files
-cp /var/www/wp/sites/default/default.settings.php /var/www/wp/sites/default/settings.php
-chmod 777 /var/www/wp/sites/default/settings.php
-
 # install
 cd /var/www/
 wget http://wordpress.org/latest.tar.gz
 tar -xzvf latest.tar.gz 
-mv wordpress wp
+mv wordpress html
 
 
 
