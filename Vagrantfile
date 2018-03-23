@@ -73,11 +73,11 @@ Vagrant.configure("2") do |config|
 	debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
 	apt-get update
 	apt-get install -y mysql-server mysql-client
-    apt-get update
+        apt-get update
     
-    apt-get install -y apache2 tree curl 
-    apt-get install -y php-cli php php-mysql php-mdb2-driver-mysql
-    apt-get install -y expect
+        apt-get install -y apache2 tree curl 
+        apt-get install -y php-cli php php-mysql php-mdb2-driver-mysql
+        apt-get install -y expect
  
 	echo removing old wp-cli
 	rm /usr/local/bin/wp
