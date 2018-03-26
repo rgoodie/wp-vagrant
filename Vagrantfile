@@ -76,7 +76,7 @@ Vagrant.configure("2") do |config|
         apt-get update
     
         apt-get install -y apache2 tree curl 
-        apt-get install -y php-cli php php-mysql php-mdb2-driver-mysql
+        apt-get install -y php-cli php php-mysql php-mdb2-driver-mysql libapache2-mod-php
         apt-get install -y expect
  
 	echo removing old wp-cli
@@ -104,8 +104,12 @@ Vagrant.configure("2") do |config|
 	wp core config --dbname=wp --dbuser=wp --dbpass=wp --allow-root
 	wp core install --url=http://http://192.168.33.10/ --title="Insecure Blog" --admin_user=wp --admin_password=wp --admin_email=fake@example.com --allow-root
 	rm index.html
+
 	
 	chown vagrant:www-data /var/www -R
+
+	wp option set siteurl http://192.168.33.10
+	wp option set home http://192.168.33.10
 	
 	
 	
