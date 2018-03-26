@@ -110,6 +110,8 @@ Vagrant.configure("2") do |config|
 
 	wp option set siteurl http://192.168.33.10
 	wp option set home http://192.168.33.10
+	wp plugin install all-in-one-wp-migration
+	wp plugin activate all-in-one-wp-migration
 	
 	
 	
