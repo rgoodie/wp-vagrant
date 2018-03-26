@@ -67,8 +67,7 @@ Vagrant.configure("2") do |config|
   # documentation for more information about their specific syntax and use.	
   config.vm.provision "shell", inline: <<-SHELL
   
-  	apt-get purge -y mysql-server mariadb-server
-  	
+  		
   	debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
 	debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
 	apt-get update
@@ -102,16 +101,20 @@ Vagrant.configure("2") do |config|
 	cd /var/www/html
 	wp core download --allow-root
 	wp core config --dbname=wp --dbuser=wp --dbpass=wp --allow-root
-	wp core install --url=http://http://192.168.33.10/ --title="Insecure Blog" --admin_user=wp --admin_password=wp --admin_email=fake@example.com --allow-root
-	rm index.html
+	wp core install --url=http://192.168.33.10/ --title="Insecure Blog" --admin_user=wp --admin_password=wp --admin_email=fake@example.com --allow-root
+	
+	rm index.html	
 
+	wp option set siteurl http://192.168.33.10 --allow-root
+	wp option set home http://192.168.33.10 --allow-root
+	wp plugin install all-in-one-wp-migration --allow-root
+	wp plugin activate all-in-one-wp-migration --allow-root
 	
 	chown vagrant:www-data /var/www -R
+	chmod g+w /var/www/html/wp-content -R
 
-	wp option set siteurl http://192.168.33.10
-	wp option set home http://192.168.33.10
-	wp plugin install all-in-one-wp-migration
-	wp plugin activate all-in-one-wp-migration
+	service apache2 restart
+	service mysql restart
 	
 	
 	
